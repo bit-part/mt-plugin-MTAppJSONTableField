@@ -1,0 +1,248 @@
+<h3 style="padding:5px;border-left: 5px solid #333333;background-color:#e6e6e6;"><__trans phrase="Entry"> JSONTable <__trans phrase="Settings"></h3>
+
+<mtapp:setting
+    id="mtappjsontable_field_setting_entry_gui"
+    label="GUI <__trans phrase="Settings">">
+    <select name="mtappjsontable_field_setting_entry_gui" id="mtappjsontable_field_setting_entry_gui">
+        <option value="0"<mt:Unless name="mtappjsontable_field_setting_entry_gui"> selected="selected"</mt:Unless>><__trans phrase="Disable"></option>
+        <option value="1"<mt:If name="mtappjsontable_field_setting_entry_gui"> selected="selected"</mt:If>><__trans phrase="Enable"></option>
+    </select>
+</mtapp:setting>
+
+<div id="mtappjsontable_field_setting_entry_gui_container">
+    <mtapp:setting
+        id="mtappjsontable_field_setting_entry_header"
+        label="<__trans phrase="Header"><__trans phrase="Settings">">
+        <textarea name="mtappjsontable_field_setting_entry_header" id="mtappjsontable_field_setting_entry_header" class="text low"><mt:var name="mtappjsontable_field_setting_entry_header" escape="html"></textarea>
+    </mtapp:setting>
+    <mtapp:setting
+        id="mtappjsontable_field_setting_entry_general"
+        label="<__trans phrase="Details"><__trans phrase="Settings">">
+        <textarea name="mtappjsontable_field_setting_entry_general" id="mtappjsontable_field_setting_entry_general" class="text low"><mt:var name="mtappjsontable_field_setting_entry_general" escape="html"></textarea>
+    </mtapp:setting>
+</div>
+
+<h3 style="padding:5px;border-left: 5px solid #333333;background-color:#e6e6e6;"><__trans phrase="Page"> JSONTable <__trans phrase="Settings"></h3>
+
+<mtapp:setting
+    id="mtappjsontable_field_setting_page_gui"
+    label="GUI <__trans phrase="Settings">">
+    <select name="mtappjsontable_field_setting_page_gui" id="mtappjsontable_field_setting_page_gui">
+        <option value="0"<mt:Unless name="mtappjsontable_field_setting_page_gui"> selected="selected"</mt:Unless>><__trans phrase="Disable"></option>
+        <option value="1"<mt:If name="mtappjsontable_field_setting_page_gui"> selected="selected"</mt:If>><__trans phrase="Enable"></option>
+    </select>
+</mtapp:setting>
+
+<div id="mtappjsontable_field_setting_page_gui_container">
+    <mtapp:setting
+        id="mtappjsontable_field_setting_page_header"
+        label="<__trans phrase="Header"><__trans phrase="Settings">">
+        <textarea name="mtappjsontable_field_setting_page_header" id="mtappjsontable_field_setting_page_header" class="text low"><mt:var name="mtappjsontable_field_setting_page_header" escape="html"></textarea>
+    </mtapp:setting>
+    <mtapp:setting
+        id="mtappjsontable_field_setting_page_general"
+        label="<__trans phrase="Details"><__trans phrase="Settings">">
+        <textarea name="mtappjsontable_field_setting_page_general" id="mtappjsontable_field_setting_page_general" class="text low"><mt:var name="mtappjsontable_field_setting_page_general" escape="html"></textarea>
+    </mtapp:setting>
+</div>
+
+<h3 style="padding:5px;border-left: 5px solid #333333;background-color:#e6e6e6;"><__trans phrase="Blog"> JSONTable <__trans phrase="Settings"></h3>
+
+<mtapp:setting
+    id="mtappjsontable_field_setting_blog_gui"
+    label="GUI <__trans phrase="Settings">">
+    <select name="mtappjsontable_field_setting_blog_gui" id="mtappjsontable_field_setting_blog_gui">
+        <option value="0"<mt:Unless name="mtappjsontable_field_setting_blog_gui"> selected="selected"</mt:Unless>><__trans phrase="Disable"></option>
+        <option value="1"<mt:If name="mtappjsontable_field_setting_blog_gui"> selected="selected"</mt:If>><__trans phrase="Enable"></option>
+    </select>
+</mtapp:setting>
+
+<div id="mtappjsontable_field_setting_blog_gui_container">
+    <mtapp:setting
+        id="mtappjsontable_field_setting_blog_header"
+        label="<__trans phrase="Header"><__trans phrase="Settings">">
+        <textarea name="mtappjsontable_field_setting_blog_header" id="mtappjsontable_field_setting_blog_header" class="text low"><mt:var name="mtappjsontable_field_setting_blog_header" escape="html"></textarea>
+    </mtapp:setting>
+    <mtapp:setting
+        id="mtappjsontable_field_setting_blog_general"
+        label="<__trans phrase="Details"><__trans phrase="Settings">">
+        <textarea name="mtappjsontable_field_setting_blog_general" id="mtappjsontable_field_setting_blog_general" class="text low"><mt:var name="mtappjsontable_field_setting_blog_general" escape="html"></textarea>
+    </mtapp:setting>
+</div>
+
+<script type="text/javascript">
+(function($){
+    $('#mtappjsontable_field_setting_entry_gui,#mtappjsontable_field_setting_page_gui,#mtappjsontable_field_setting_blog_gui').on('change.MTAppJSONTableField', function(){
+        var id = $(this).attr('id');
+        var containerId = id + '_container';
+        console.log($('#' + containerId).length);
+        console.log($(this).val());
+        if ($(this).val() == 1) {
+            $('#' + containerId).show();
+        }
+        else {
+            $('#' + containerId).hide();
+        }
+    }).trigger('change.MTAppJSONTableField');
+
+    if (typeof mtappVars === 'undefined') {
+        alert('<__trans phrase="MTAppjQuery Plugin is not installed.">');
+        return;
+    }
+    var setInputType = function($container){
+        $container.find('td.headerType .jsontable-input:not(.callback-ready)').each(function(){
+            $(this).addClass('callback-ready').MTAppDynamicSelect({
+                dynamic: false,
+                text: {
+                    '入力タイプ':[
+                      'input|テキスト',
+                      'textarea|複数行テキスト',
+                      'image|画像'
+                    ]
+                }
+            }).next().trigger('change');
+        });
+    };
+    var headerSettings = {
+        inputType: 'input', // 'textarea' or 'input'
+        header: {
+            headerKey: '<__trans phrase="Header key">',
+            headerName: '<__trans phrase="Header name">',
+            headerType: '<__trans phrase="Input type">'
+        }, // Object: Table header
+        headerOrder: [
+            'headerKey',
+            'headerName',
+            'headerType'
+        ], // Array: Order of table header
+        headerPosition: 'top', // 'top' or 'left'
+        edit: true, // Disable table
+        add: true, // true: A user can add rows or columns.
+        clear: true, // false: Hide a delete button.
+        sortable: true,
+        cbAfterBuild: function($cb, $container){
+            setInputType($container);
+        }, // function({name: 'cbAfterBuild'}, $container){}
+        cbAfterAdd: function($cb, $container){
+            setInputType($container);
+        }, // function({name: 'cbAfterAdd', type: 'row or column'}, $container){}
+        debug: true // true: show the original textarea.
+    };
+    var detailSettings = {
+        inputType: {
+            caption: 'input',
+            headerPosition: 'input',
+            footer: 'input',
+            edit: 'input',
+            add: 'input',
+            clear: 'input',
+            cellMerge: 'input',
+            sortable: 'input',
+            optionButtons: 'textarea',
+            cbAfterBuild: 'textarea',
+            cbBeforeAdd: 'textarea',
+            cbAfterAdd: 'textarea',
+            cbBeforeClear: 'textarea',
+            cbAfterSelectRow: 'textarea',
+            cbAfterSelectColumn: 'textarea',
+            debug: 'input'
+        },
+        header: {
+            caption: 'caption',
+            headerPosition: 'headerPosition',
+            footer: 'footer',
+            edit: 'edit',
+            add: 'add',
+            clear: 'clear',
+            cellMerge: 'cellMerge',
+            sortable: 'sortable',
+            optionButtons: 'optionButtons',
+            cbAfterBuild: 'cbAfterBuild',
+            cbBeforeAdd: 'cbBeforeAdd',
+            cbAfterAdd: 'cbAfterAdd',
+            cbBeforeClear: 'cbBeforeClear',
+            cbAfterSelectRow: 'cbAfterSelectRow',
+            cbAfterSelectColumn: 'cbAfterSelectColumn',
+            debug: 'debug'
+        }, // Object: Table header
+        headerOrder: [
+            'caption',
+            'headerPosition',
+            'footer',
+            'edit',
+            'add',
+            'clear',
+            'cellMerge',
+            'sortable',
+            'optionButtons',
+            'cbAfterBuild',
+            'cbBeforeAdd',
+            'cbAfterAdd',
+            'cbBeforeClear',
+            'cbAfterSelectRow',
+            'cbAfterSelectColumn',
+            'debug'
+        ],
+        headerPosition: 'left',
+        footer: false,
+        edit: true,
+        add: false,
+        clear: false,
+        cellMerge: false,
+        sortable: false,
+        cbAfterBuild: null,
+        debug: true
+    };
+    $('#mtappjsontable_field_setting_entry_header').MTAppJSONTable(headerSettings);
+    $('#mtappjsontable_field_setting_entry_general').MTAppJSONTable(detailSettings);
+    $('#mtappjsontable_field_setting_page_header').MTAppJSONTable(headerSettings);
+    $('#mtappjsontable_field_setting_page_general').MTAppJSONTable(detailSettings);
+    $('#mtappjsontable_field_setting_blog_header').MTAppJSONTable(headerSettings);
+    $('#mtappjsontable_field_setting_blog_general').MTAppJSONTable(detailSettings);
+
+    $('#mtappjsontable_field_setting_entry_general-field,#mtappjsontable_field_setting_page_general-field,#mtappjsontable_field_setting_blog_general-field')
+        .find('td.headerPosition .jsontable-input').MTAppDynamicSelect({
+            dynamic: false,
+            text: {
+                'オプション設定':[
+                  'top|表の1行目',
+                  'left|表の1列目'
+                ]
+            }
+        })
+        .next().trigger('change')
+        .end()
+        .end()
+        .find('td.footer .jsontable-input,td.edit .jsontable-input,td.add .jsontable-input,td.clear .jsontable-input,td.cellMerge .jsontable-input,td.sortable .jsontable-input,td.debug .jsontable-input').MTAppDynamicSelect({
+            dynamic: false,
+            text: {
+                'オプション設定':[
+                  'true|有効',
+                  'false|無効'
+                ]
+            }
+        })
+        .next().trigger('change')
+        .end()
+        .end()
+        .find('td.cbAfterBuild .jsontable-input,td.cbBeforeAdd .jsontable-input,td.cbAfterAdd .jsontable-input,td.cbBeforeClear .jsontable-input,td.cbAfterSelectRow .jsontable-input,td.cbAfterSelectColumn .jsontable-input').addClass('text low');
+    // Styles
+    var selectors = [
+        '#mtappjsontable_field_setting_entry_header-field',
+        '#mtappjsontable_field_setting_entry_general-field',
+        '#mtappjsontable_field_setting_page_header-field',
+        '#mtappjsontable_field_setting_page_general-field',
+        '#mtappjsontable_field_setting_blog_header-field',
+        '#mtappjsontable_field_setting_blog_general-field'
+    ];
+    $(selectors.join(' .mtapp-json-table,') + ' .mtapp-json-table').css('width', '75%');
+    $(selectors.join(' .mtapp-json-table .jsontable-table.ui-sortable td.jsontable-sort-handle,') + ' .mtapp-json-table .jsontable-table.ui-sortable td.jsontable-sort-handle').css({
+        'border-top-color': '#f9f9f9',
+        'border-bottom-color': '#f9f9f9',
+        'border-left-color': '#f9f9f9',
+        'background-color': '#f9f9f9'
+    });
+    $(selectors.join(' th,') + ' th').css('width', '12em');
+    $(selectors.join(' .jsontable-cb-cell,') + ' .jsontable-cb-cell').css('width', '3em');
+}(jQuery));
+</script>

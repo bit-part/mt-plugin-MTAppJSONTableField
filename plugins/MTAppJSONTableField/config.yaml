@@ -1,0 +1,56 @@
+id: MTAppJSONTableField
+name: MTAppJSONTableField
+version: 0.0.1
+schema_version: 0.0.1
+description: <__trans phrase='Add a field for MTAppJSONTable'>
+plugin_link: https://github.com/bit-part/mt-plugin-MTAppJSONTableField/
+author_name: <__trans phrase='bit part LLC'>
+author_link: http://bit-part.net/
+l10n_class: MTAppJSONTableField::L10N
+# config_template: config_template.tmpl
+blog_config_template: config_template.tmpl
+# system_config_template: system_config_template.tmpl
+settings:
+    mtappjsontable_field_setting_entry_gui:
+        default: 0
+    mtappjsontable_field_setting_entry_header:
+        default:
+    mtappjsontable_field_setting_entry_general:
+        default: {"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}
+    mtappjsontable_field_setting_page_gui:
+        default: 0
+    mtappjsontable_field_setting_page_header:
+        default:
+    mtappjsontable_field_setting_page_general:
+        default: {"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}
+    mtappjsontable_field_setting_blog_gui:
+        default: 0
+    mtappjsontable_field_setting_blog_header:
+        default:
+    mtappjsontable_field_setting_blog_general:
+        default: {"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}
+object_types:
+    entry:
+        jsontable:
+            type: text
+            revisioned: 1
+    blog:
+        jsontable:
+            type: text
+            revisioned: 1
+tags:
+    function:
+        EntryJSONTableItem: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_jsontableitem
+        PageJSONTableItem: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_jsontableitem
+        BlogJSONTableItem: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_jsontableitem
+    block:
+        EntryJSONTableItems: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_jsontableitems
+        PageJSONTableItems: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_jsontableitems
+        BlogJSONTableItems: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_jsontableitems
+        IfEntryJSONTableItem?: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_if_jsontableitem
+        IfPageJSONTableItem?: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_if_jsontableitem
+        IfBlogJSONTableItem?: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_if_jsontableitem
+callbacks:
+    #----- Transformer
+    MT::App::CMS::template_param.edit_entry: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_insert_jsontable
+    MT::App::CMS::template_param.cfg_prefs: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_insert_jsontable
