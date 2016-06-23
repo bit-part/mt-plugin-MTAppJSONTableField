@@ -103,7 +103,7 @@ EOS
         );
         my $options_objects_str = '';
         foreach my $key (keys(%options_objects)) {
-            $options_objects_str .= $key . ':' . $options_objects{$key} . ',';
+            $options_objects_str .= '"' . $key . '"' . ':' . $options_objects{$key} . ',';
         }
         $options_str = $options_objects_str . $options_str;
 

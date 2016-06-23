@@ -1,6 +1,6 @@
 id: MTAppJSONTableField
 name: MTAppJSONTableField
-version: 0.0.1
+version: 0.0.3
 schema_version: 0.0.1
 description: <__trans phrase='Add a field for MTAppJSONTable'>
 plugin_link: https://github.com/bit-part/mt-plugin-MTAppJSONTableField/
@@ -16,19 +16,19 @@ settings:
     mtappjsontable_field_setting_entry_header:
         default:
     mtappjsontable_field_setting_entry_general:
-        default: {"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}
+        default: '{"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}'
     mtappjsontable_field_setting_page_gui:
         default: 0
     mtappjsontable_field_setting_page_header:
         default:
     mtappjsontable_field_setting_page_general:
-        default: {"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}
+        default: '{"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}'
     mtappjsontable_field_setting_blog_gui:
         default: 0
     mtappjsontable_field_setting_blog_header:
         default:
     mtappjsontable_field_setting_blog_general:
-        default: {"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}
+        default: '{"items":[{"caption":"","headerPosition":"top","footer":"false","edit":"true","add":"false","clear":"true","cellMerge":"false","sortable":"false","optionButtons":"","cbAfterBuild":"","cbBeforeAdd":"","cbAfterAdd":"","cbBeforeClear":"","cbAfterSelectRow":"","cbAfterSelectColumn":"","debug":"false"}]}'
 object_types:
     entry:
         jsontable:

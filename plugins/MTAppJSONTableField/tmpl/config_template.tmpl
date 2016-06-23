@@ -125,6 +125,12 @@
         }, // function({name: 'cbAfterBuild'}, $container){}
         cbAfterAdd: function($cb, $container){
             setInputType($container);
+            $container.find('td.jsontable-sort-handle').css({
+                'border-top-color': 'transparent',
+                'border-bottom-color': 'transparent',
+                'border-left-color': 'transparent',
+                'background-color': 'transparent'
+            });
         }, // function({name: 'cbAfterAdd', type: 'row or column'}, $container){}
         debug: true // true: show the original textarea.
     };
@@ -237,10 +243,10 @@
     ];
     $(selectors.join(' .mtapp-json-table,') + ' .mtapp-json-table').css('width', '75%');
     $(selectors.join(' .mtapp-json-table .jsontable-table.ui-sortable td.jsontable-sort-handle,') + ' .mtapp-json-table .jsontable-table.ui-sortable td.jsontable-sort-handle').css({
-        'border-top-color': '#f9f9f9',
-        'border-bottom-color': '#f9f9f9',
-        'border-left-color': '#f9f9f9',
-        'background-color': '#f9f9f9'
+        'border-top-color': 'transparent',
+        'border-bottom-color': 'transparent',
+        'border-left-color': 'transparent',
+        'background-color': 'transparent'
     });
     $(selectors.join(' th,') + ' th').css('width', '12em');
     $(selectors.join(' .jsontable-cb-cell,') + ' .jsontable-cb-cell').css('width', '3em');
