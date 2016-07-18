@@ -75,8 +75,6 @@
     $('#mtappjsontable_field_setting_entry_gui,#mtappjsontable_field_setting_page_gui,#mtappjsontable_field_setting_blog_gui').on('change.MTAppJSONTableField', function(){
         var id = $(this).attr('id');
         var containerId = id + '_container';
-        console.log($('#' + containerId).length);
-        console.log($(this).val());
         if ($(this).val() == 1) {
             $('#' + containerId).show();
         }

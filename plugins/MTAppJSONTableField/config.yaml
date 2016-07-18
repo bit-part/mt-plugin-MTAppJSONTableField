@@ -1,6 +1,6 @@
 id: MTAppJSONTableField
 name: MTAppJSONTableField
-version: 0.0.3
+version: 0.0.4
 schema_version: 0.0.1
 description: <__trans phrase='Add a field for MTAppJSONTable'>
 plugin_link: https://github.com/bit-part/mt-plugin-MTAppJSONTableField/
