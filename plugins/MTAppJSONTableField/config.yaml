@@ -1,6 +1,6 @@
 id: MTAppJSONTableField
 name: MTAppJSONTableField
-version: 0.0.4
+version: 0.0.6
 schema_version: 0.0.1
 description: <__trans phrase='Add a field for MTAppJSONTable'>
 plugin_link: https://github.com/bit-part/mt-plugin-MTAppJSONTableField/
@@ -50,7 +50,13 @@ tags:
         IfEntryJSONTableItem?: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_if_jsontableitem
         IfPageJSONTableItem?: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_if_jsontableitem
         IfBlogJSONTableItem?: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_if_jsontableitem
+list_properties:
+    entry:
+        jsontable:
+            auto: 1
+            display: none
 callbacks:
+    data_api_pre_load_filtered_list.entry: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_data_api_pre_load_filtered_list
     #----- Transformer
     MT::App::CMS::template_param.edit_entry: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_insert_jsontable
     MT::App::CMS::template_param.cfg_prefs: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_insert_jsontable

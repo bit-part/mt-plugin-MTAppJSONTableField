@@ -131,4 +131,28 @@ EOS
     1;
 }
 
+sub hdlr_data_api_jsontable {
+    my ($obj) = @_;
+    my $jsontable = $obj->jsontable
+      or return [];
+    my $json = MT::Util::from_json($jsontable);
+    my $items = $json->{items};
+    return $items;
+}
+
+sub hdlr_data_api_pre_load_filtered_list {
+    my ($cb, $app, $filter, $options) = @_;
+
+    return 1 if exists $options->{total};
+    if (my $value = $app->param('jsontable')) {
+        $filter->append_item({
+            'type' => 'jsontable',
+            'args' => {
+                'string' => $value,
+                'option' => 'contains',
+            }
+        });
+    }
+}
+
 1;
