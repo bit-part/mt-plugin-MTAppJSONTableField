@@ -52,24 +52,24 @@ tags:
         IfBlogJSONTableItem?: $MTAppJSONTableField::MTAppJSONTableField::ContextHandlers::hdlr_if_jsontableitem
 callbacks:
     #----- Transformer
-    MT::App::CMS::template_param.edit_entry: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_insert_jsontable
-    MT::App::CMS::template_param.cfg_prefs: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_insert_jsontable
+    MT::App::CMS::template_param.edit_entry: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_insert_jsontable
+    MT::App::CMS::template_param.cfg_prefs: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_insert_jsontable
 applications:
     data_api:
         resources:
             entry:
                 fields:
                     - name: jsontable
-                      from_object: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
+                      from_object: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
             page:
                 fields:
                     - name: jsontable
-                      from_object: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
+                      from_object: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
             website:
                 fields:
                     - name: jsontable
-                      from_object: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
+                      from_object: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
             blog:
                 fields:
                     - name: jsontable
-                      from_object: $tMTAppJSONTableFieldest::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
+                      from_object: $MTAppJSONTableField::MTAppJSONTableField::Plugin::hdlr_data_api_jsontable
