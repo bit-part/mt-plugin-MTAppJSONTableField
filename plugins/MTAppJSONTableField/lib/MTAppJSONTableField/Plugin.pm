@@ -140,18 +140,30 @@ sub hdlr_data_api_jsontable {
     return $items;
 }
 
+# MT::DataAPI::Endpoint::Common
+sub query_parser {
+    [ grep $_, ( $_[0] =~ /\s*"([^"]+)"|\s*([^"\s]+)|\s*"([^"]+)/sg ) ];
+}
+
 sub hdlr_data_api_pre_load_filtered_list {
     my ($cb, $app, $filter, $options) = @_;
 
     return 1 if exists $options->{total};
     if (my $value = $app->param('jsontable')) {
-        $filter->append_item({
-            'type' => 'jsontable',
-            'args' => {
-                'string' => $value,
-                'option' => 'contains',
+        my $separator = ':';
+        foreach my $search (@{ query_parser($value) }) {
+            if ($search =~ /$separator/) {
+                my @key_value = split(/$separator/, $search);
+                $search = '"' . $key_value[0] . '":"' . $key_value[1] . '"';
             }
-        });
+            $filter->append_item({
+                'type' => 'jsontable',
+                'args' => {
+                    'string' => $search,
+                    'option' => 'contains',
+                }
+            });
+        }
     }
 }
 
